@@ -2,7 +2,7 @@
 #include <windows.h>
 #pragma warning(disable:4996)
 
-void LeapYear() //打印1000-2000的闰年
+/*void LeapYear() //打印1000-2000的闰年
 {
 	int year = 1000;
 	while (year <= 2000)
@@ -18,6 +18,32 @@ void LeapYear() //打印1000-2000的闰年
 int main()
 {
 	LeapYear();
+	system("pause");
+	return 0;
+}*/
+int LeapYear(int year)
+{
+	if((year%400==0)||(year%4==0&&year%100!=0))
+	{
+		return 1;
+	}
+	else 
+	return 0;
+ } 
+ int main()
+{
+	int falg = 0;
+	int year;
+	scang("%d",&year);
+	falg=LeapYear(year);
+	if(1 == falg)
+	{
+		printf("shi"); 
+	}
+	else
+	{
+		printf("NO");
+	}
 	system("pause");
 	return 0;
 }
