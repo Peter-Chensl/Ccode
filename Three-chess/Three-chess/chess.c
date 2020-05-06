@@ -29,6 +29,7 @@ int PlayerMove(char board[][COL], int row, int col)
 	int x = 0;
 	int y = 0;
 	printf("请输入你的坐标<x,y>：");
+	scanf("%d%d",&x,&y);
 	if ((x >= 1 && x <= 3) && (y >= 1 && y <= 3))
 	{
 		if (board[x - 1][y - 1] != ' ')
@@ -37,7 +38,7 @@ int PlayerMove(char board[][COL], int row, int col)
 		}
 		else
 		{
-			board[x - 1][y - 1] != BLACK_PIECE;
+			board[x - 1][y - 1] = BLACK_PIECE;
 			return 0;
 		}
 	}
@@ -63,7 +64,7 @@ char JudgeResult(char board[][COL], int row, int col)
 			return board[0][i];
 		}
 	}
-	if (board[0][0] != ' '&&board[0][0] == board[1][1] && board[][1] == board[2][2])
+	if (board[0][0] != ' '&&board[0][0] == board[1][1] && board[1][1] == board[2][2])
 	{
 		return board[0][0];
 	}
@@ -71,7 +72,7 @@ char JudgeResult(char board[][COL], int row, int col)
 	{
 		return board[1][1];
 	}
-	for (; i < row; i++)
+	for (i = 0; i < row; i++)
 	{
 		int j = 0;
 		for (; j < col; j++)
@@ -84,22 +85,65 @@ char JudgeResult(char board[][COL], int row, int col)
 	}
 	return 'E';
 }
+void ComputerMove(char board[][COL], int row, int col)
+{
+	while (1)
+	{
+		int i = rand() % row;
+		int j = rand() % col;
+		if (board[i][j] == ' ')
+		{
+			board[i][j] = WHITE_PIECE;
+			break;
+		}
+	}
+	printf("computer...done!\n");
+	Sleep(1000);
+}
 void Game()
 {
-	
 	char board[ROW][COL];
-	Initboard(board,ROW,COL);
-	Showboard(board,ROW,COL);
-	int num =PlayerMove(board,ROW, COL);
-	if (1 == num){
-		printf("你输入的坐标有误，请重新输入！\n");
-	}
-	else if (2 == num)
-	{
-		printf("对不起！你输入的坐标已经被占用，请重新输入！\n");
-	}
-	else
-	{
+	Initboard(board, ROW, COL);
 
+	char result = 'N';
+	srand((unsigned long)time(NULL));
+	while (1){
+		Showboard(board, ROW, COL);
+		int type = PlayerMove(board, ROW, COL);
+		if (1 == type){
+			printf("你输入的坐标有误，请重新输入！\n");
+			continue;
+		}
+		else if (2 == type){
+			printf("你输入的坐标已经被占用，请重新输入！\n");
+			continue;
+		}
+		else{
+			printf("Player  ... Done!\n");
+		}
+		result = JudgeResult(board, ROW, COL);
+		if (result != 'N'){
+			break;
+		}
+
+		ComputerMove(board, ROW, COL);
+		result = JudgeResult(board, ROW, COL);
+		if (result != 'N'){
+			break;
+		}
+	}
+	Showboard(board, ROW, COL);
+	switch (result){
+	case 'E':
+		printf("恭喜你，你和电脑打了个平手!\n");
+		break;
+	case BLACK_PIECE:
+		printf("恭喜你， 你赢了!\n");
+		break;
+	case WHITE_PIECE:
+		printf("sorry， 电脑赢了!\n");
+		break;
+	default:
+		break;
 	}
 }

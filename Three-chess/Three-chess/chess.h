@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 #include <windows.h>
+#include <time.h>
+#include <stdlib.h>
 #pragma warning(disable:4996)
 
 #define BLACK_PIECE 'X'  //ºÚÆå
@@ -12,6 +14,7 @@
 
 void Initboard( char board[][COL],int row,int col);
 void Showboard(char board[][COL], int row, int col);
+void ComputerMove(char board[][COL], int row, int col);
 int PlayerMove(char board[][COL], int row, int col);
 char JudgeResult(char board[][COL], int row, int col);
 
