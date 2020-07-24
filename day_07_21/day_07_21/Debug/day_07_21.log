@@ -1,0 +1,62 @@
+﻿生成启动时间为 2020/7/24 11:09:18。
+     1>项目“F:\Clanguage\Ccode\day_07_21\day_07_21\day_07_21.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         F:\编程\VS\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt TestMain.c
+         TestMain.c
+     1>f:\clanguage\ccode\day_07_21\day_07_21\slist.h(37): warning C4047: “=”:“int”与“void *”的间接级别不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\slist.h(60): warning C4047: “=”:“int”与“SList”的间接级别不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\slist.h(61): warning C4047: “=”:“SList *”与“SListNode *”的间接级别不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\slist.h(97): warning C4028: 形参 1 与声明不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\slist.h(103): warning C4047: “=”:“SListNode *”与“int”的间接级别不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\slist.h(112): warning C4047: “!=”:“int”与“void *”的间接级别不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\slist.h(132): warning C4047: “初始化”:“SListNode *”与“SList *”的间接级别不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\slist.h(142): warning C4047: “函数”:“SList *”与“SList”的间接级别不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\slist.h(142): warning C4024: “find”: 形参和实参 1 的类型不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\slist.h(165): warning C4047: “函数”:“SList *”与“SList”的间接级别不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\slist.h(165): warning C4024: “SListlength”: 形参和实参 1 的类型不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\slist.h(170): warning C4047: “初始化”:“SListNode *”与“SList *”的间接级别不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\slist.h(177): warning C4047: “>”:“SListNode *”与“int”的间接级别不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(5): error C2065: “Slist”: 未声明的标识符
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(5): error C2146: 语法错误: 缺少“;”(在标识符“list”的前面)
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(5): error C2065: “list”: 未声明的标识符
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(6): error C2065: “list”: 未声明的标识符
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(6): warning C4047: “函数”:“SList *”与“int *”的间接级别不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(6): warning C4024: “SListInit”: 形参和实参 1 的类型不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(36): error C2065: “list”: 未声明的标识符
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(36): warning C4047: “函数”:“SList *”与“int *”的间接级别不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(36): warning C4024: “SListPushBack”: 形参和实参 1 的类型不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(44): error C2065: “list”: 未声明的标识符
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(44): warning C4047: “函数”:“SList *”与“int *”的间接级别不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(44): warning C4024: “SListPushFront”: 形参和实参 1 的类型不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(49): error C2065: “list”: 未声明的标识符
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(49): warning C4133: “函数”: 从“int *”到“SList”的类型不兼容
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(52): error C2065: “list”: 未声明的标识符
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(52): warning C4047: “函数”:“SList *”与“int *”的间接级别不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(52): warning C4024: “SListPopback”: 形参和实参 1 的类型不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(55): error C2065: “list”: 未声明的标识符
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(55): warning C4047: “函数”:“SList *”与“int *”的间接级别不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(55): warning C4024: “SListPopfront”: 形参和实参 1 的类型不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(62): warning C4013: “SlistEraseByval”未定义；假设外部返回 int
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(62): error C2065: “list”: 未声明的标识符
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(69): warning C4013: “SeqListSort”未定义；假设外部返回 int
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(69): error C2065: “list”: 未声明的标识符
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(70): warning C4013: “SeqListInsertVal”未定义；假设外部返回 int
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(70): error C2065: “list”: 未声明的标识符
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(75): error C2065: “list”: 未声明的标识符
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(75): warning C4047: “函数”:“SList *”与“int”的间接级别不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(75): warning C4024: “find”: 形参和实参 1 的类型不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(85): error C2065: “list”: 未声明的标识符
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(85): warning C4047: “函数”:“SList *”与“int *”的间接级别不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(85): warning C4024: “SListlength”: 形参和实参 1 的类型不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(88): warning C4013: “SlistSort”未定义；假设外部返回 int
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(88): error C2065: “list”: 未声明的标识符
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(93): error C2065: “list”: 未声明的标识符
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(93): warning C4047: “函数”:“SList *”与“int *”的间接级别不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(93): warning C4024: “SListReverse”: 形参和实参 1 的类型不同
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(104): warning C4013: “SeqListDestroy”未定义；假设外部返回 int
+     1>f:\clanguage\ccode\day_07_21\day_07_21\testmain.c(104): error C2065: “list”: 未声明的标识符
+     1>已完成生成项目“F:\Clanguage\Ccode\day_07_21\day_07_21\day_07_21.vcxproj”(Build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:00.92
