@@ -4,7 +4,7 @@
 #include"Commone.h"
 #define STACK_DEFAULT_SIZE 8
 
-typedef struct SeqStack
+/*typedef struct SeqStack
 {
 	ElemType *base;
 	size_t capacity;
@@ -82,6 +82,84 @@ void SeqStackDestroy(SeqStack *pst)
 	free(pst->base);
 	pst->base = NULL;
 	pst->capacity = pst->top = 0;
-}
+}*/
+//Á´Õ»
+typedef struct LinkStackNode
+{
+	ElemType data;
+	LinkStackNode *link;
+}LinkStackNode;
+typedef LinkStackNode* LinkStack;
+void LinkStackInit(LinkStack *lst);
+void LinkStackPush(LinkStack *lst, ElemType x);
+void LinkStackPop(LinkStack *lst);
+ElemType LinkStackTop(LinkStack *lst);
+void LinkStackShow(LinkStack *lst);
+int LinkStacksize(LinkStack *lst);
+void LinkStackDestroy(LinkStack *lst);
 
+void LinkStackInit(LinkStack *lst)
+{
+	assert(lst != NULL);
+	*lst = NULL;
+}
+void LinkStackPush(LinkStack *lst, ElemType x)
+{
+	assert(lst != NULL);
+	LinkStackNode *s = (LinkStackNode*)malloc(sizeof(LinkStackNode));
+	assert(s != NULL);
+	s->data = x;
+
+	s->link = *lst;
+	*lst = s;
+}
+void LinkStackPop(LinkStack *lst)
+{
+	assert(lst != NULL);
+	if (*lst != NULL)
+	{
+		LinkStackNode *p = *lst;
+		*lst = p->link;
+		free(p);
+	}
+}
+ElemType LinkStackTop(LinkStack *lst)
+{
+	assert(lst != NULL && *lst != NULL);
+	return (*lst)->data;
+}
+void LinkStackShow(LinkStack *lst)
+{
+	assert(lst != NULL);
+	LinkStackNode * p = *lst;
+	while (p != NULL)
+	{
+		printf("| %d |\n", p->data);
+		p = p->link;
+	}
+	printf("¡ª¡ª\n");
+}
+int LinkStacksize(LinkStack *lst)
+{
+	assert(lst != NULL);
+	int count = 0;
+	LinkStackNode *p = *lst;
+	while (p != NULL)
+	{
+		count++;
+		p = p->link;
+	}
+	return count;
+}
+void LinkStackDestroy(LinkStack *lst)
+{
+	assert(lst != NULL);
+	LinkStackNode *p = *lst;
+	while (p != NULL)
+	{
+		*lst = p->link;
+		free(p);
+		p = *lst;
+	}
+}
 #endif
