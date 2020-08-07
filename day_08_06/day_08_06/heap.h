@@ -18,8 +18,12 @@ void HeapInit(MinHeap *ph, int se = HEAP_DEFULT_SIZE);
 void HeapInsert(MinHeap *ph, HeapElemType x);
 void HeaShifUp(MinHeap *ph, int start);
 void HeapShow(MinHeap *ph);
-/*void HeapCreate(MinHeap *php, HeapElemType ar[], int n);
-void HeapShiftDown(MinHeap *php, int start, int n);*/
+void HeapErase(MinHeap *hp);
+void HeapShifDown(MinHeap *hp, int  start, int n);
+void HeapCreate(MinHeap *hp, HeapElemType ar[], int n);
+HeapElemType HeapTop(MinHeap *hp);
+void HeapSort(MinHeap *hp, int arr[], int n);
+bool HeapEmpty(MinHeap * hp);
 
 
 void HeapInit(MinHeap *ph, int se )
@@ -68,22 +72,77 @@ void HeapShow(MinHeap *ph)
 	}
 	printf("\n");
 }
-/*void HeapShiftDown(MinHeap *php, int start, int n)
+void HeapErase(MinHeap *hp)
+{
+	assert(hp != NULL);
+	if (hp->size == 0)
+	{
+		printf("堆已空！不能删除");
+		return;
+	}
+	hp->size--;
+	hp->base[0] = hp->base[hp->size];
+	HeapShifDown(hp,0,hp->size);
+}
+void HeapShifDown(MinHeap *hp, int  start, int n)
 {
 	int i = start;
 	int j = 2 * i + 1;
 	while (j < n)
 	{
-		if (j + 1<n && php->base[j]>php->base[j + 1]) //寻求左右子树中的最小值
-			j++;
-		if (php->base[i] > php->base[j])
+		if (j + 1 < n &&hp->base[j] >hp->base[j+1])
 		{
-			Swap(&php->base[i], &php->base[j]);
+			j++;
+		}
+		if (hp->base[i]>hp->base[j])
+		{
+			Swap(&hp->base[i], &hp->base[j]);
 			i = j;
 			j = 2 * i + 1;
 		}
-		else
-			break;
+		break;
 	}
-}*/
+}
+void HeapCreate(MinHeap *hp, HeapElemType ar[], int n)
+{
+	hp->capacity = n;
+	hp->base = (HeapElemType*)malloc(sizeof(HeapElemType)*hp->capacity);
+	assert(hp->base != NULL);
+	for (int i = 0; i < n; i++)
+	{
+		hp->base[i] = ar[i];
+	}
+	hp->size = n;
+
+	int curpos = n / 2 - 1;
+	while (curpos >= 0)
+	{
+		HeapShifDown(hp, curpos, n); 
+		curpos--;
+	}
+}
+HeapElemType HeapTop(MinHeap *hp)
+{
+	assert(hp != NULL && hp->size > 0);
+	return hp->base[0];
+}
+void HeapSort(MinHeap *hp, int arr[], int n)
+{
+	HeapCreate(hp, arr, n);
+	while (hp->size > 0)
+	{
+		hp->size--;
+		Swap(&hp->base[hp->size], &hp->base[0]);
+		HeapShifDown(hp, 0, hp->size);
+	}
+	for (int i = 0; i < n; i++)
+	{
+		arr[i] = hp->base[i];
+	}
+}
+bool HeapEmpty(MinHeap * hp)
+{
+	assert(hp != NULL);
+	return hp->size == 0;
+}
 #endif

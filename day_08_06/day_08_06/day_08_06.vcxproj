@@ -64,6 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="bst.h" />
     <ClInclude Include="Commone.h" />
     <ClInclude Include="heap.h" />
   </ItemGroup>
