@@ -2,7 +2,7 @@
 
 int main()
 {
-	int arr[] = { 49, 38, 65, 97, 76, 13, 27, 49 };
+	int arr[] = { 5, 1, 2, 4, 3, 6, 9, 7,6 };
 	int n = sizeof(arr) / sizeof(arr[0]);
 	PrintArray(arr, 0, n);
 	TestSort(arr, 0, n);
