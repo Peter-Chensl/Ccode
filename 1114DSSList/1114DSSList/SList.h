@@ -24,6 +24,10 @@ void SListDisplay(SList *list);					//打印链表的元素
 size_t SListLength(SList *list);				//求链表的长度
 SListNode *SListFind(SList list, ElemType key);//查找元素
 void SListEraseByVal(SList *list, ElemType);	//按值删除
+void SListSort(SList *list);					//排序
+ElemType SListFront(SList list);				//表尾元素
+ElemType SListback(SList list);					//表头元素
+void DeleteAll(SList *list);                    //删除所有元素
 
 
 
@@ -162,5 +166,76 @@ size_t SListLength(SList *list)
 	}
 	return count;
 }
+void SListSort(SList *list)
+{
+	assert(list != NULL);
+	if (SListLength(list) <= 1)
+		return;
+	SListNode *temp = *list, *prev = NULL;
+	SListNode *p = *list;
+	SListNode *q = p->next;
+	p->next = NULL;
 
+	while (q != NULL)
+	{
+		p = q;
+		q = q->next;
+		while (temp != NULL&&p->data > temp->data)
+		{
+			prev = temp;
+			temp = temp->next;
+		}
+		if (prev == NULL)
+		{
+			p->next = *list;
+			*list = p;
+		}
+		else
+		{
+			p->next = prev->next;
+			prev->next = p;
+		}
+		temp = *list;
+		prev = NULL;
+	 }
+}
+ElemType SListFront(SList list)
+{
+	return list->data;
+}
+ElemType SListback(SList list)
+{
+	SListNode *p = list;
+	while (p->next != NULL)
+	{
+		p = p->next;
+	}
+	return p->data;
+}
+void DeleteAll(SList *list)
+{
+	assert(list != NULL);
+	SListNode *p = NULL;
+	while (*list != NULL)
+	{                                                                                                  
+		p = *list;
+		*list = p->next;
+		free(p);
+	}
+
+}
+void SListReverse(SList *list)
+{
+	assert(list != NULL);
+	SListNode *p = *list;
+	SListNode *q = p->next;
+	p->next = NULL;
+	while (q != NULL)
+	{
+		p = q;
+		q = q->next;
+		p->next = *list;
+		*list = p;
+	}
+}
 #endif
