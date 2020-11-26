@@ -152,10 +152,12 @@ SCListNode* SCListFind(sclist phead, Elemtype x)
 {
 	assert(phead != NULL);
 	SCListNode *p = phead;
-	while (p->data != x)
+	while (p->next != phead)
 	{
-		p = p->next;
+		if (p->data == x)
+			return p;
+			break;
 	}
-	return p;
+	return NULL;
 }
 #endif
