@@ -21,7 +21,7 @@ void DCListpopfront(Dclist* phead);
 void DCListpopback(Dclist* phead);
 void DCListDisplay(Dclist phead);
 size_t DCListLength(Dclist phead);
-DCListNode * DCListfind(Dclist phead, Elemtype x);
+DCListNode * DCListfind(Dclist *phead, Elemtype x);
 Elemtype DCListFrontVal(Dclist phead);
 Elemtype DCListlastVal(Dclist phead);
 void DCListClear(Dclist *phead);
@@ -91,10 +91,10 @@ void DCListpopback(Dclist* phead)
 	}
 	
 }
-void DCListDisplay(Dclist *phead)
+void DCListDisplay(Dclist phead)
 {
-	DCListNode *p = (*phead)->next;
-	while (p != (*phead))
+	DCListNode *p = phead->next;
+	while (p != phead)
 	{
 		printf("%d->", p->item);
 		p = p->next;

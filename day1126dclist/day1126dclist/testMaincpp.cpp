@@ -38,7 +38,7 @@ int main()
 				printf("头部插入数据成功！\n");
 				break;
 			case 3:
-				DCListDisplay(&dclist);
+				DCListDisplay(dclist);
 				break;
 			case 4:
 				select = 0;
@@ -69,7 +69,7 @@ int main()
 				printf("请输入你要删除的数字！\n");
 				scanf("%d", &item);
 				DCListErasebyval(dclist, item);
-				printf("删除成功！\n");
+				//printf("删除成功！\n");
 				break;
 			case 11:
 				printf("FrontVal:%d\n", DCListFrontVal(dclist));
