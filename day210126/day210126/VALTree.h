@@ -4,7 +4,7 @@
 template<class T>
 struct AVLTreeNode
 {
-	AVLTreeNode(const T& x - T())
+	AVLTreeNode(const T& x = T())
 	:left(nullptr)
 	, right(nullptr)
 	, data(x)
@@ -14,7 +14,7 @@ struct AVLTreeNode
 	AVLTreeNode<T>* right;
 	AVLTreeNode<T>* parent;
 
-	T _data;
+	T data;
 	int _bf; 
 };
 template<class T>
@@ -23,8 +23,12 @@ class AVLTree
 	typedef AVLTreeNode<T> Node;
 public:
 	AVLTree()
-		:_root(nullpter)
+		:_root(nullptr)
 	{}
+	~AVLTree()
+	{
+		Destroy(_root);
+	}
 	bool Insert(const T& data)
 	{
 		if (nullptr == _root)
@@ -58,10 +62,10 @@ public:
 			if (cur == parent->left)
 				parent->_bf--;
 			else
-				psrent->_bf++;
+				parent->_bf++;
 			if (0 == parent->_bf)
 				break;
-			else if (-1 == parent->_bf || 1 == parentf->_bf)
+			else if (-1 == parent->_bf || 1 == parent->_bf)
 			{
 				cur = parent;
 				parent = cur->parent;
@@ -95,7 +99,32 @@ public:
 		}
 		return true;
 	}
+	void InOrder()
+	{
+		InOrder(_root);
+		cout << endl;
+	}
 private:
+	void InOrder(Node* root)
+	{
+		if (root)
+		{
+			InOrder(root->left);
+			cout << root->data << " ";
+			InOrder(root->right);
+		}
+	}
+	//二叉树的后续遍历规则
+	void Destroy(Node*& root)
+	{
+		if (root)
+		{
+			Destroy(root->left);
+			Destroy(root->right);
+			delete root;
+			root = nullptr;
+		}
+	}
 	void RoateRight(Node* parent)
 	{
 		Node* subL = parent->left;
@@ -157,13 +186,25 @@ private:
 	void RotateLR(Node* parent)
 	{
 		RoateLeft(parent->left);
-		RoateRight(parent->right);
+		RoateRight(parent);
 	}
 	void RotateRL(Node* parent)
 	{
 		RoateRight(parent->right);
-		RoateLeft(parent->left);
+		RoateLeft(parent);
 	}
 private:
 	AVLTreeNode<T>* _root;
 };
+
+void TestAVLTree()
+{
+	int array[] = { 16, 3, 7, 11, 9, 26, 18, 14, 15 };
+
+	AVLTree<int> t;
+	for (auto e : array)
+	{
+		t.Insert(e);
+	}
+	t.InOrder();
+}
