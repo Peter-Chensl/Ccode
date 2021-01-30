@@ -16,10 +16,9 @@ struct RBTreeNode
 	, _color(color)
 	{}
 
-	RBTreeNode* _left; // 结点的左孩子
-	RBTreeNode* _right; // 结点的右孩子
-	RBTreeNode* _parent; // 结点的双亲
-
+	RBTreeNode<T>* _left; // 结点的左孩子
+	RBTreeNode<T>* _right; // 结点的右孩子
+	RBTreeNode<T>* _parent; // 结点的双亲
 	T _data; // 结点的值域
 	Color _color; // 结点的颜色
 };
@@ -33,8 +32,8 @@ public:
 	RBTree()
 	{
 		_phead = new Node();
-		_phead->_left = nullptr;
-		_phead->_right = nullptr;
+		_phead->_left = _phead;
+		_phead->_right = _phead;
 		_phead->_parent = nullptr;//红黑树中没有任何结点
 	}
 	~RBTree()
@@ -46,17 +45,19 @@ public:
 	bool Insert(const T& data)
 	{
 		//1.按照二叉搜索树的原则插入新节点
-		Node* pRoot = GetRoot();
-		Node* parent = nullptr;
+		Node*& pRoot = GetRoot();
+		
 		if (nullptr == pRoot)
 		{
-			_phead->_parent = new Node(data,BLACK);
-			pRoot->left = pRoot;
-			_phead->right = pRoot;
+			pRoot = new Node(data, BLACK);
+			pRoot->_parent = _phead;
+			_phead->_left = pRoot;
+			_phead->_right = pRoot;
 			return true;
 		}
 		//寻找插入位置
 		Node* cur = pRoot;
+		Node* parent = nullptr;
 		cur->_parent = _phead;
 		while (cur)
 		{
@@ -81,11 +82,12 @@ public:
 		}
 		else
 			parent->_right = cur;
+		cur->_parent = parent;
 		//检测是否违反性质
-		while (parent != head && RED == parent->_color)
+		while (parent != _phead && RED == parent->_color)
 		{
 			Node* grandParent = parent->_parent;
-			if (parent = grandParent->_left)
+			if (parent == grandParent->_left)
 			{
 				Node* uncle = grandParent->_right;
 				//情况一：叔叔结点存在并且为红色
@@ -108,8 +110,8 @@ public:
 						std::swap(parent,cur);
 					}
 					
-					parent->_color = BLACK;
 					grandParent->_color = RED;
+					parent->_color = BLACK;
 					RoateRight(grandParent);
 				}
 			}
@@ -127,7 +129,7 @@ public:
 				}
 				else
 				{
-					if (cur = parent->_left)
+					if (cur == parent->_left)
 					{
 						RoateRight(parent);
 						std::swap(parent, cur);
@@ -141,18 +143,18 @@ public:
 		pRoot->_color = BLACK;
 		_phead->_left = leftMost();
 		_phead->_right = rightMost();
-		return ture;
+		return true;
 	}
 void Inorder()
 {
 	Inorder(GetRoot());
 }
 private:
-	Node& GetRoot()
+	Node*& GetRoot()
 	{
 		return _phead->_parent;
 	}
-	Node& leftMost()
+	Node* leftMost()
 	{
 		Node* root = GetRoot();
 		if (nullptr == root)
@@ -166,12 +168,12 @@ private:
 		}
 		return cur;
 	}
-	Node& rightMost()
+	Node* rightMost()
 	{
 		Node* root = GetRoot();
 		if (nullptr == root)
 			return _phead;
-		Node * cur = root;
+		Node* cur = root;
 		while (cur->_right)
 		{
 			cur = cur->_right;
@@ -188,7 +190,7 @@ private:
 			subRL->_parent = parent;
 		}
 		subR->_left = parent;
-		Node*pparent = parent->_parent;
+		Node* pparent = parent->_parent;
 		parent->_parent = subR;
 		subR->_parent = pparent;
 
@@ -227,10 +229,10 @@ private:
 		else
 		{
 			if (pparent->_left == parent)
-				subL = pparent->_left;
+				pparent->_left = subL;
 			else
 			{
-				subL = pparent->_right;
+				pparent->_right = subL;
 			}
 
 		}
@@ -243,7 +245,7 @@ private:
 			cout << root->_data << " ";
 			Inorder(root->_right);
 		} 
-		cout << endl;
+		//cout << endl;
 
 	}
 	void Destory(Node* & root)
@@ -258,7 +260,7 @@ private:
 		}
 	}
 private:
-	Node _phead;
+	Node* _phead;
 
 };
 

@@ -1,8 +1,8 @@
-#include <iostream>
-#include "VALTree.h"
+//#include <iostream>
+//#include "VALTree.h"
 #include "RBTree.h"
 
-using namespace std;
+//using namespace std;
 
 int main()
 {
