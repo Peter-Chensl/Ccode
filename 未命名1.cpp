@@ -1,25 +1,22 @@
-#include <stdio.h>
-namespace N
-{
-	int a = 10;
-	int b = 20;
-	int Add(int left ,int right)
-	{
-		return left + right;
-	}
-	
-	int Sub(int left,int right)
-	{
-		return left - right;
-	}
-}
-using N::Add(int left,int right);
-//using namespace N;
+/*#include <stdio.h>
+
 int main()
 {
-	printf("%d\n",N::a);
-	printf("%d\n",b);
-	int result = Add(10,20);
-	printf("%d\n",result);
-	return 0;
+    int id;
+    float a,b,c;
+    scanf("%d;%f,%f,%f",&id,&a,&b,&c);
+    printf("The each subject score of  No. %d is %.2f, %.2f, %.2f.\n",id,a,b,c);
+    return 0;
+   
+}*/
+#include <stdio.h>
+
+
+int main()
+{
+    int d;
+    float a,b,c;
+    scanf("%d;%f,%f,%f\n",&d,&a,&b,&c);
+    printf("The each subject score of  No. %d, %.2f, %.2f, %.2f",d,a,b,c);
+    return 0;
 }
