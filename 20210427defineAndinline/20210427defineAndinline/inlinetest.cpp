@@ -58,15 +58,34 @@ int main()
 	return 0;
 }
 #endif
-#include <stdio.h>
+#if 0
 #include <iostream>
 using namespace std;
 
 #define MAX(a,b) (a > b ? a:b)
 int main()
 {
-	int a = 10, b = 20;
-	cout << MAX(++a, b) << endl;
+	int a = 10;
+	int b = 20;
+	cout << MAX(a, ++b) << endl;
+	system("pause");
+	return 0;
+}
+#endif
+#include <iostream>
+#include "Add.h"
+using namespace std;
+
+/*inline int Add(int a, int b)
+{
+	return a + b;
+}*/
+int main()
+{
+	int a, b;
+	cin >> a >> b;
+	int ret = Add(a, b);
+	cout << ret << endl;
 	system("pause");
 	return 0;
 }
