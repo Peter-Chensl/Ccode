@@ -107,6 +107,7 @@ int main()
 	return 0;
 }
 #endif
+#if 0
 #include <iostream>
 using namespace std;
 
@@ -144,3 +145,92 @@ int main()
 	system("pause");
 	return 0;
 }
+#endif
+#if 0
+#include <iostream>
+#include <assert.h>
+
+using namespace std;
+
+typedef int DataType;
+class SeqList
+{
+public:
+	SeqList(int capacity = 10)
+	{
+		_pData = (DataType*)malloc(capacity*sizeof(DataType));
+		assert(_pData);
+		_size = 0;
+		_capacity = capacity;
+	}
+	~SeqList()
+	{
+		if (_pData)
+		{
+			free(_pData); // 释放堆上的空间
+			_pData = NULL; //将指针置为空
+			_capacity = 0;
+			_size = 0;
+		}
+	}
+private:
+	int* _pData;
+	size_t _size;
+	size_t _capacity;
+};
+
+int main()
+{
+	SeqList *s;
+	s->~SeqList();
+	system("pause");
+	return 0;
+
+}
+#endif
+#include <iostream>
+#include <assert.h>
+#include <string.h>
+using namespace std;
+class String
+{
+public:
+	String(const char* str = "")
+	{
+		_str = (char*)malloc(strlen(str) + 1);
+		strcpy(_str, str);
+	}
+
+	~String()
+	{
+		if (_str)
+		{
+			free(_str);
+			_str = nullptr;
+		}
+	}
+private:
+	char* _str;
+};
+
+
+class Person
+{
+private:
+	String _name;
+	int _age;
+};
+
+void TestPerson()
+{
+	Person p;
+}
+
+int main()
+{
+	TestPerson();
+
+	String s("hello world");
+	return 0;
+}
+
