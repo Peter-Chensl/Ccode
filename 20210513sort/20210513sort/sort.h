@@ -10,6 +10,59 @@ void InsertSort2(int *arr, int left, int right);
 //二分插入排序
 void BinInsertSort(int *arr, int left, int right);
 
+
+//希尔排序
+void ShellSort(int *arr, int n, int dlta[], int t);
+void ShellInsert(int *arr, int n, int dk);
+int dlta[] = { 5, 3, 2, 1 };
+void shellSort(int *arr, int left, int right);
+
+void ShellSort(int *arr, int n, int dlta[], int t)
+{
+	for (int i = 0; i < t; i++)
+	{
+		ShellInsert(arr, n, dlta[i]);
+	}
+}
+void ShellInsert(int *arr, int n, int dk)
+{
+	for (int i = dk; i < n; i++)
+	{
+		if (arr[i] < arr[i - dk])
+		{
+			int temp = arr[i];
+			int j;
+			for (j = i - dk; j > 0; j -= dk)
+			{
+				arr[j + dk] = arr[j];
+			}
+			arr[j + dk] = temp;
+		}
+	}
+}
+void shellSort(int *arr, int left, int right)
+{
+	int dk = right - left;
+	while (dk > 1)
+	{
+		dk = dk / 3 + 1;
+		for (int i = left + dk; i < right; i++)
+		{
+			if (arr[i] < arr[i - dk])
+			{
+				int temp = arr[i];
+				int end = i - dk;
+				while (end >= left && temp < arr[end])
+				{
+					arr[end + dk] = arr[end];
+					end -= dk;
+				}
+				arr[end + dk] = temp;
+			}
+		}
+	}
+}
+
 void Print(int *arr, int left, int right);
 //测试效率
 void testEfficiency();
