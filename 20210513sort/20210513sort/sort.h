@@ -17,6 +17,158 @@ void ShellInsert(int *arr, int n, int dk);
 int dlta[] = { 5, 3, 2, 1 };
 void shellSort(int *arr, int left, int right);
 
+//冒泡排序
+void BubleSort(int *arr, int left, int right);
+//改进版的冒泡排序
+void BubleSort1(int *arr, int left, int right);
+
+//快速排序
+void quickSort(int *arr, int left, int right);
+//查找中间位置的下标
+//hoare版本
+int Partition(int *arr, int left, int right);
+//挖坑法
+int Partition1(int *arr, int left, int right);
+//快慢指针法
+int Partition2(int *arr, int left, int right);
+
+//归并排序
+void _MergeSort(int *arr)
+
+//查找中间位置的下标
+//hoare版本
+int Partition(int *arr, int left, int right)
+{
+	int key = arr[left];
+	while (left < right)
+	{
+		while (left < right && key > arr[left])
+			left++;
+		swap(key, arr[left]);
+		while (left < right && key < arr[right])
+			right--;
+		swap(key, arr[right]);
+	}
+	return left;
+}
+//挖坑法
+int Partition1(int *arr, int left, int right)
+{
+	int key = arr[left];
+	while (left < right)
+	{
+		while (left < right && key > arr[left])
+			left++;
+		arr[right] = arr[left];
+		while (left < right && key < arr[right])
+			right--;
+		arr[left] = arr[right];
+	}
+	arr[left] = key;
+	return left;
+}
+int Partition2(int *arr, int left, int right)
+{
+	int key = arr[left];
+	int pos = left;
+	for (int i = left + 1; i <= right; i++)
+	{
+		if (key > arr[i])
+		{
+			pos++;
+			if (pos != i)
+			{
+				swap(arr[pos], arr[i]);
+			}
+		}
+	}
+	swap(arr[left], arr[pos]);
+	return pos;
+}
+//快速排序
+void quickSort(int *arr, int left, int right)
+{
+	if (left >= right - 1)
+	{
+		return;
+	}
+	int pos = Partition2(arr, left, right - 1);
+	quickSort(arr, left, pos);
+	quickSort(arr, pos +1 , right);
+}
+
+//冒泡排序
+void BubleSort(int *arr, int left, int right)
+{
+	int n = right - left;
+	for (int i = left; i < n - 1; i++)
+	{
+		for (int j = left; j < n - i - 1; j++)
+		{
+			if (arr[j] > arr[j+1])
+			{
+				swap(arr[j], arr[j + 1]);
+			}
+		}
+	}
+}
+
+//改进版的冒泡排序
+void BubleSort1(int *arr, int left, int right)
+{
+	int n = right - left;
+	bool flag = false;//用来标记一趟排序中有没有交换数据，如没有，直接停止排序
+	for (int i = left; i < n - 1; i++)
+	{
+		for (int j = left; j < n - 1 - i; j++)
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				swap(arr[j], arr[j + 1]);
+				flag = true;
+			}
+		}
+		if (!flag)
+		{
+			break;
+		}
+		else
+		{
+			flag = false;
+		}
+	}
+	
+
+}
+//直接选择排序
+int MinIndex(int *arr, int left, int right);//获取最小下标
+void selectSort(int *arr, int left, int right);
+int MinIndex(int *arr, int left, int right)
+{
+	int minindex = left;
+	int min = arr[left];
+	for (int i = left; i < right; i++)
+	{
+		if (arr[i] < min)
+		{
+			min = arr[i];
+			minindex = i;
+		}
+	}
+	return minindex;
+}
+void selectSort(int *arr, int left, int right)
+{
+	for (int i = left; i < right - 1; i++)
+	{
+		int mininIndex = MinIndex(arr, i, right);
+		if (i != mininIndex)
+		{
+			swap(arr[i], arr[mininIndex]);
+		}
+	}
+}
+
 void ShellSort(int *arr, int n, int dlta[], int t)
 {
 	for (int i = 0; i < t; i++)

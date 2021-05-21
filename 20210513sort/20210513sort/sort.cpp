@@ -4,6 +4,23 @@ int main()
 {
 	int arr[] = { 8, 9, 2, 7, 3, 52, 46, 82 };
 	int len = sizeof(arr) / sizeof(arr[0]);
+	
+	quickSort(arr, 0, len);
+	cout << "hoare版本快速排序后的结果：";
+	Print(arr, 0, len);
+
+	BubleSort1(arr, 0, len);
+	cout << "改进版冒泡排序后的结果：";
+	Print(arr, 0, len);
+
+	BubleSort(arr, 0, len);
+	cout << "冒泡排序后的结果：";
+	Print(arr, 0, len);
+
+	selectSort(arr, 0, len);
+	cout << "直接选择排序后的结果：";
+	Print(arr, 0, len);
+
 	shellSort(arr, 0, len);
 	cout << "希尔排序后的结果：";
 	Print(arr, 0, len);
@@ -31,7 +48,6 @@ int main()
 	cout << "带哨兵位的插入排序后的结果：";
 	Print(arr1, 1, len);
 	testEfficiency();
-	*/
 	system("pause");
 	return 0;
 }
